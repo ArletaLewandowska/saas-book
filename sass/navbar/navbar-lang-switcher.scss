@@ -1,0 +1,226 @@
+.navbar-lang-switcher {
+    position: relative;
+    height: 100%;
+
+    &:hover {
+
+        .navbar-lang-switcher__flag--wrapper {
+            height: 3rem;
+            opacity: 1;
+        }
+
+    }
+
+    .navbar-lang-switcher__flag-list {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        background: rgba($light, .9);
+        box-shadow: $shadow-20;
+        overflow: hidden;
+        margin-left: -1rem;
+    }
+
+    .navbar-lang-switcher__flag--wrapper {
+        display: flex;
+        align-items: center;
+        height: 0;
+        opacity: 0;
+        transition-property: height, opacity, box-shadow;
+        transition-duration: $transition-duration;
+
+        &:not(.navbar-lang-switcher__flag--wrapper--active) {
+            padding: 0 1rem;
+
+            &:hover, &:focus {
+                background: $grey-100;
+                box-shadow: $shadow-20;
+            }
+
+        }
+
+        &.navbar-lang-switcher__flag--wrapper--active {
+            height: 100%;
+            opacity: 1;
+
+            &::after {
+                content: 'keyboard_arrow_down';
+                font-family: 'Material Icons';
+                color: $dark-secondary;
+            }
+
+        }
+
+    }
+
+    .navbar-lang-switcher__flag {
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        box-shadow: $shadow-20;
+        position: relative;
+        overflow: hidden; // Ukrycie wystających elementów flagi.
+
+        &.navbar-lang-switcher__flag--poland {
+            background: linear-gradient(to bottom, // z góry do dołu
+                $flag-white 50%, // 0 - 50% - biały
+                $flag-red 50% // 50% - 100% - czerwony
+            );
+        }
+
+        &.navbar-lang-switcher__flag--italy {
+            background: linear-gradient(to right, // od lewej do prawej
+                $flag-green 33%, // 0 - 33% - zielony
+                $flag-white 33%, $flag-white 66%, // 33 - 66% - biały
+                $flag-red 66% // 66% - 100% - czerwony
+            );
+        }
+
+        &.navbar-lang-switcher__flag--greece {
+            background: linear-gradient(to bottom,
+                $flag-blue 11%, // 0 - 11% niebieski
+                $flag-white 11%, $flag-white 22%, // 11% - 22% biały
+                $flag-blue 22%, $flag-blue 33%,
+                $flag-white 33%, $flag-white 44%,
+                $flag-blue 44%, $flag-blue 55%,
+                $flag-white 55%, $flag-white 66%,
+                $flag-blue 66%, $flag-blue 77%,
+                $flag-white 77%, $flag-white 88%,
+                $flag-blue 88%
+            );
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 50%;
+                height: 50%;
+                background:
+                    linear-gradient(to bottom, // ten gradient musi być pierwszy, aby przykrył drugi gradient
+                        transparent 40%,
+                        $flag-white 40%, $flag-white 60%,
+                        transparent 60%
+                    ),
+                    linear-gradient(to right,
+                        $flag-blue 40%,
+                        $flag-white 40%, $flag-white 60%,
+                        $flag-blue 60%
+                    );
+            }
+
+        }
+
+        &.navbar-lang-switcher__flag--czech-republic {
+            background: linear-gradient(to bottom, // z góry do dołu
+                $flag-white 50%, // 0 - 50% - biały
+                $flag-red 50% // 50% - 100% - czerwony
+            );
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 50%;
+                height: 100%;
+                background: $flag-blue;
+                clip-path: polygon(0 0, 0% 100%, 100% 50%); // https://bennettfeely.com/clippy/
+            }
+
+        }
+
+        &.navbar-lang-switcher__flag--seychelles {
+            background: linear-gradient(115deg, $flag-blue 0, $flag-blue 28%, transparent 30%), // 2% Różnicy, aby zapobiec poszarpanym krawędziom.
+            linear-gradient(130deg, $flag-yellow 0, $flag-yellow 43%, transparent 45%),
+            linear-gradient(145deg, $flag-red 0, $flag-red 58%, transparent 60%),
+            linear-gradient(160deg, $flag-white 0, $flag-white 73%, transparent 75%),
+            linear-gradient(172deg, $flag-green 0, $flag-green 90%);
+        }
+
+        &.navbar-lang-switcher__flag--grenadines {
+            background: linear-gradient(to right,
+                $flag-blue 25%,
+                $flag-yellow 25%, $flag-yellow 75%,
+                $flag-green 75%
+            );
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: calc(50% + .3rem);
+                transform: translate(-50%, -50%) scaleY(1.75) rotate(45deg);
+                width: .2rem;
+                height: .2rem;
+                background: $flag-green;
+                box-shadow: -.3rem 0 0 $flag-green, 0 -.3rem 0 $flag-green;
+            }
+
+        }
+
+        &.navbar-lang-switcher__flag--maldives {
+            background-color: $flag-green;
+            background-image:
+                linear-gradient(to right,
+                    $flag-red 16%,
+                    transparent 16%, transparent 84%,
+                    $flag-red 84%
+                ),
+                linear-gradient(to bottom,
+                    $flag-red 16%,
+                    transparent 16%, transparent 84%,
+                    $flag-red 84%
+                ),
+                radial-gradient(circle at calc(50% + .3rem), $flag-green .35rem, transparent .4rem),
+                radial-gradient(circle at calc(50% + .1rem), $flag-white .35rem, transparent .4rem);
+        }
+
+        &.navbar-lang-switcher__flag--united-states {
+            background: linear-gradient(to bottom,
+                $flag-red 11%,
+                $flag-white 11%, $flag-white 22%,
+                $flag-red 22%, $flag-red 33%,
+                $flag-white 33%, $flag-white 44%,
+                $flag-red 44%, $flag-red 55%,
+                $flag-white 55%, $flag-white 66%,
+                $flag-red 66%, $flag-red 77%,
+                $flag-white 77%, $flag-white 88%,
+                $flag-red 88%
+            );
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 70%;
+                height: 50%;
+                background: $flag-blue;
+            }
+
+            &::after {
+                content: '\2605';
+                position: absolute;
+                top: 0;
+                left: -.45rem;
+                color: $flag-white;
+                font-size: .275rem;
+                text-shadow:
+                    .45rem 0 0 $flag-white, .9rem 0 0 $flag-white, 1.35rem 0 0 $flag-white,
+                    .675rem .225rem 0 $flag-white, 1.125rem .225rem 0 $flag-white,
+                    .45rem .45rem 0 $flag-white, .9rem .45rem 0 $flag-white, 1.35rem .45rem 0 $flag-white,
+                    .675rem .675rem 0 $flag-white, 1.125rem .675rem 0 $flag-white
+            ;
+            }
+
+        }
+
+    }
+
+    .lang_switcher__country-name {
+        white-space: nowrap;
+        margin-left: .5rem;
+    }
+
+}

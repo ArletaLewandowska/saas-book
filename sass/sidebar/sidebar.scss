@@ -1,0 +1,46 @@
+.sidebar {
+    width: 12rem;
+    background: $grey-50;
+    transition: width $transition-duration;
+    position: relative;
+
+    .sidebar__section {
+        display: flex;
+        justify-content: center;
+        padding: .5rem 0;
+    }
+
+}
+
+@media (max-width: 48rem) {
+
+    .sidebar {
+        width: 100%;
+        height: 3rem;
+        position: fixed;
+        z-index: 2;
+        overflow: hidden;
+        overflow-y: scroll;
+        box-shadow: $shadow-10;
+        transition: height $transition-duration;
+
+        .sidebar__section {
+
+            &.sidebar__section--logo {
+                position: relative;
+                z-index: 1;
+                height: 3rem;
+                padding: 0;
+                align-items: center;
+                transition: box-shadow $transition-duration;
+            }
+
+            &.sidebar__section--user { display: none; }
+
+            &.sidebar__section--nav { background: $grey-50; }
+
+        }
+
+    }
+
+}

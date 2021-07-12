@@ -1,0 +1,187 @@
+.sidebar-toggler__checkbox {
+    position: absolute;
+    z-index: -10;
+}
+
+.sidebar-toggler {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+    &:hover .sidebar-toggler__icon {
+
+        &::before, &::after { background: $primary; }
+
+    }
+
+    .sidebar-toggler__icon {
+        width: .75rem;
+        height: .5rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            width: .75rem;
+            height: .15rem;
+            background: $grey-300;
+            transition: transform .4s, background $transition-duration;
+        }
+
+        &::before {
+            top: 0;
+            transform: rotate(-30deg);
+        }
+
+        &::after {
+            bottom: 0;
+            transform: rotate(30deg);
+        }
+
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .sidebar-toggler__checkbox {
+
+        &:checked {
+
+            + .sidebar {
+                width: 3.5rem;
+
+                .sidebar-toggler {
+                    width: 100%;
+                    height: 3rem;
+                }
+
+                .sidebar-toggler__icon {
+                    &::before { transform: rotate(30deg); }
+                    &::after { transform: rotate(-30deg); }
+                }
+
+                .sidebar-logo__wrapper {
+                    height: 0;
+                    overflow: hidden;
+                }
+
+                .sidebar-user { padding: 0 .25rem; }
+
+                .sidebar-user__avatar-wrapper {
+                    width: 3rem;
+                    height: 3rem;
+                }
+
+                .sidebar-user__name, .sidebar-user__status { font-size: $font-size-xxs; }
+
+                .sidebar-nav__header {
+
+                    &::before {
+                        content: attr(data-toggled-shortcut);
+                        text-transform: uppercase;
+                        margin-right: 2rem;
+                    }
+
+                }
+
+                .sidebar-nav__item {
+                    z-index: 2;
+                    overflow: hidden;
+                    width: 3.5rem;
+
+                    &:hover, &:focus {
+                        background: $grey-50;
+                        width: 10rem;
+                        box-shadow: $shadow-10;
+                    }
+
+                }
+
+                .sidebar-nav__notification {
+                    right: .25rem;
+                    top: .25rem;
+                    padding: .1rem .25rem;
+                    font-size: .5rem;
+                }
+
+            }
+
+            ~ .app__page {
+                width: calc(100% - 3.5rem);
+            }
+
+        }
+
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .sidebar-toggler__checkbox {
+
+        &:checked {
+
+            + .sidebar {
+                height: 100vh;
+
+                .sidebar-toggler {
+
+                    .sidebar-toggler__icon {
+                        background: transparent;
+
+                        &::before, &::after {
+                            top: 50%;
+                            left: 50%;
+                        }
+
+                        &::before { transform: translate(-50%, -50%) rotate(-45deg); }
+                        &::after { transform: translate(-50%, -50%) rotate(45deg); }
+
+                    }
+
+                }
+
+                .sidebar__section.sidebar__section--logo { box-shadow: $shadow-20; }
+
+            }
+
+        }
+
+    }
+
+    .sidebar-toggler {
+        right: .5rem;
+        top: .5rem;
+
+        .sidebar-toggler__icon {
+            height: 3px;
+            width: 20px;
+            background: $grey-300;
+
+            &::before, &::after {
+                transform: none;
+                height: 3px;
+                width: 20px;
+            }
+
+            &::before { top: -6px; }
+            &::after { top: 6px; }
+
+        }
+
+        &:focus, &:hover {
+            .sidebar-toggler__icon { background: $primary; }
+        }
+
+    }
+
+}
